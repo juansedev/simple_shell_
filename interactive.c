@@ -24,7 +24,7 @@ int interactive(char *av[], int count_exe, char **env)
 			free(line), write(STDIN_FILENO, "\n", 1);
 			return (status_process);
 		}
-		else if ((_strncmp(line, "exit\n", 4) == 0))
+		else if (_strncmp(line, "exit\n", 4) == 0)
 		{
 			free(line);
 			return (status_process);
@@ -40,11 +40,8 @@ int interactive(char *av[], int count_exe, char **env)
 					args[i] = token, token = strtok(NULL, " \t\n\r");
 				args[i] = NULL;
 				if (args[1])
-					status_process = create_process(args, count_exe, env);
-				if (status_process == 127)
 				{
-					free(line);
-					return (status_process);
+					status_process = create_process(args, count_exe, env);
 				}
 			} count_exe++;
 		}
