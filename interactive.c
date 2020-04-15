@@ -39,7 +39,7 @@ int interactive(char *av[], int count_exe, char **env)
 		{
 			if (_strncmp(line, "env\n", 3) == 0)
 				print_env(env);
-			if (read > 1)
+			else if (read > 1)
 			{
 				token = strtok(line, " \t\n\r");
 				args[0] = av[0];
@@ -48,10 +48,13 @@ int interactive(char *av[], int count_exe, char **env)
 					args[i] = token;
 					token = strtok(NULL, " \t\n\r");
 				} args[i] = NULL;
-				if (*args)
-					status_process = child_process(args, count_exe);
+				if (args[1])
+					status_process = child_process(args, count_exe);	
 				if (status_process == 127)
+				{
+					free(line);
 					return (status_process);
+				}
 			} count_exe++;
 		}
 	}
