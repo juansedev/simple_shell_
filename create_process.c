@@ -32,24 +32,12 @@ int create_process(char *av[], int count_exe, char **env)
 				sprintf(error_msg, "%s: %d: %s: not found\n", av[0], count_exe, av[1]);
 				write(2, error_msg, _strlen(error_msg));
 				(alloc == 1) ? free(full_file) : (void) alloc;
-			} /*waitpid(child_pid, &status, 0);
-			if (WIFEXITED(status))
-			{
-				exit_status = WEXITSTATUS(status);
-				printf ( "Exit status of the child was %d\n", exit_status);
-			}*/
+			}
 		}
-		/*if (child_pid == -1)
-		{
-			sprintf(error_msg, "%s: %d: %s: not found\n", av[0], count_exe, av[1]);
-			write(2, error_msg, _strlen(error_msg));
-		}*/
-		/*if (child_pid > 0)*/
 		  waitpid(child_pid, &status, 0), (alloc == 1) ? free(full_file) : (void) alloc;
 		if (WIFEXITED(status))
 		{	
 			exit_status = WEXITSTATUS(status); 
-			printf ( "Exit status of the child was %d\n", exit_status);
 			return (exit_status);
 		}
 	} else
