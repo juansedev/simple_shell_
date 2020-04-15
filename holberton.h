@@ -12,17 +12,13 @@
 #include <string.h>
 #include <errno.h>
 
-extern char **environ;
-
-void asd(char **args);
-
 /* Shell functions shell_functions.c*/
 	void non_interact(char **av);
 	int interactive(char *av[], int count_exe, char **env);
-	int create_process(char *av[], int count_exe);
-	char *_getenv(char *name);
+	int create_process(char *av[], int count_exe, char **env);
+	char *_getenv(char *name, char **env);
 	void print_env(char **env);
-	int child_process(char **args, int count_exe);
+	int child_process(char **args, int count_exe, char **env);
 
 /* funcions search_path path_fuctions.c*/
 	char *validate_file(char *full_path, char *file);

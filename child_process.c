@@ -5,7 +5,7 @@
  * @count_exe: Executions counter
  * Return: Error value of execution
  **/
-int child_process(char **args, int count_exe)
+int child_process(char **args, int count_exe, char **env)
 {
 	int r_process = 0, status = 0;
 	pid_t child_pid;
@@ -17,7 +17,7 @@ int child_process(char **args, int count_exe)
 		return (1);
 	}
 	if (child_pid == 0)
-		r_process = create_process(args, count_exe);
+		r_process = create_process(args, count_exe, env);
 	if (child_pid > 0)
 		wait(&status);
 	return (r_process);

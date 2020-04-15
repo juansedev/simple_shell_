@@ -4,7 +4,7 @@
  * @name: name the variable envirionment
  * Return: char value envirionment
  **/
-char *_getenv(char *name)
+char *_getenv(char *name, char **env)
 {
 	char *token1 = NULL, *token2 = NULL;
 	char *env_name = NULL, *current_env = NULL;
@@ -12,11 +12,11 @@ char *_getenv(char *name)
 
 	env_name = _strdup(name);
 
-	while (environ[i] && environ)
+	while (env[i] && env)
 	{
 		current_env = NULL;
 		token2 = NULL;
-		current_env = _strdup(environ[i]);
+		current_env = _strdup(env[i]);
 		token1 = strtok(current_env, "=");
 		token2 = _strdup(strtok(NULL, "="));
 		if (_strcmp(env_name, token1) == 0)

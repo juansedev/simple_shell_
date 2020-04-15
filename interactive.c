@@ -49,7 +49,7 @@ int interactive(char *av[], int count_exe, char **env)
 					token = strtok(NULL, " \t\n\r");
 				} args[i] = NULL;
 				if (args[1])
-					status_process = child_process(args, count_exe);	
+					status_process = child_process(args, count_exe, env);	
 				if (status_process == 127)
 				{
 					free(line);
