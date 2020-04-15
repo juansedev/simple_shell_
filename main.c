@@ -18,7 +18,6 @@ int main(int ac, char *av[], char **env)
 		non_interact(av);
 		return (0);
 	}
-
 	status_exit = interactive(av, count_exe, env);
 	return (status_exit);
 }

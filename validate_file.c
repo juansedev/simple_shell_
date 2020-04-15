@@ -33,5 +33,5 @@ char *validate_file(char *full_path, char *file)
 		token = strtok(NULL, ":");
 		i++;
 	}
-	return (file);
+	return (NULL);
 }

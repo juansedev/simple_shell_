@@ -22,18 +22,12 @@ int interactive(char *av[], int count_exe, char **env)
 		if (read == EOF)
 		{
 			free(line), write(STDIN_FILENO, "\n", 1);
-			if (status_process != 0)
-				return (status_process);
-			else
-				return (0);
+			return (status_process);
 		}
 		else if ((_strncmp(line, "exit\n", 4) == 0))
 		{
 			free(line);
-			if (status_process != 0)
-				return (status_process);
-			else
-				return (0);
+			return (status_process);
 		}
 		else
 		{
@@ -41,15 +35,12 @@ int interactive(char *av[], int count_exe, char **env)
 				print_env(env);
 			else if (read > 1)
 			{
-				token = strtok(line, " \t\n\r");
-				args[0] = av[0];
+				token = strtok(line, " \t\n\r"), args[0] = av[0];
 				for (i = 1; i < 32 && token != NULL; i++)
-				{
-					args[i] = token;
-					token = strtok(NULL, " \t\n\r");
-				} args[i] = NULL;
+					args[i] = token, token = strtok(NULL, " \t\n\r");
+				args[i] = NULL;
 				if (args[1])
-					status_process = child_process(args, count_exe, env);	
+					status_process = create_process(args, count_exe, env);
 				if (status_process == 127)
 				{
 					free(line);
@@ -58,8 +49,5 @@ int interactive(char *av[], int count_exe, char **env)
 			} count_exe++;
 		}
 	}
-	if (status_process != 0)
-		return (status_process);
-	else
-		return (0);
+	return (status_process);
 }

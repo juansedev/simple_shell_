@@ -18,7 +18,6 @@
 	int create_process(char *av[], int count_exe, char **env);
 	char *_getenv(char *name, char **env);
 	void print_env(char **env);
-	int child_process(char **args, int count_exe, char **env);
 
 /* funcions search_path path_fuctions.c*/
 	char *validate_file(char *full_path, char *file);
